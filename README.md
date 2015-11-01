@@ -1,2 +1,2 @@
 # FCN-master
-Fully Convolutional Networks: from Semantic Segmentation to Visual Tracking
+This is for the paper Fully Convolutional Networks: from Semantic Segmentation to Visual Tracking
