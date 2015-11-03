@@ -129,8 +129,8 @@ layers { type: DECONVOLUTION name: 'upsample'
 layers { type: CROP name: 'crop' bottom: 'bigscore' bottom: 'data' top: 'upscore' }
 
 
-layers { name: 'conv9-1' type: CONVOLUTION bottom: 'upscore' top: 'conv9-1'
+layers { name: 'conv-final' type: CONVOLUTION bottom: 'upscore' top: 'conv-final'
   blobs_lr: 1 blobs_lr: 2 weight_decay: 1 weight_decay: 0
   convolution_param { engine: CAFFE num_output: 1 kernel_size: 31 pad: 15} }
 
-layers { name: 'loss' type: EUCLIDEAN_LOSS bottom: 'conv9-1' bottom: 'label' top:'loss'}
+layers { name: 'loss' type: EUCLIDEAN_LOSS bottom: 'conv-final' bottom: 'label' top:'loss'}
