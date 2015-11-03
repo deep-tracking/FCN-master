@@ -37,7 +37,7 @@ for imgNum = 1:seq.len
     img(:,:,1) = img(:,:,1)-104.00698793; 
     img(:,:,2) = img(:,:,2)-116.66876762; 
     img(:,:,3) = img(:,:,3)-122.67891434;
-    output = caffe('forward', {single(img);single(zeros(input_size))}, 'data_input_0_split', 'conv9-1', 'conv9-1');
+    output = caffe('forward', {single(img);single(zeros(input_size))}, 'data_input_0_split', 'conv-final', 'conv-final');
     output = output{1};
     output = squeeze(output);
     cos_win = hann(input_size(1))*hann(input_size(2))';
@@ -78,7 +78,7 @@ for imgNum = 1:seq.len
         start_layer = 'fc6';
         for i = 1:iterNum
             lr = 1e-11;
-            output = caffe('forward', {single(img);single(label)}, 'conv9-1', 'loss', 'loss');
+            output = caffe('forward', {single(img);single(label)}, 'conv-final', 'loss', 'loss');
             output = output{1};
             if output > 1000
                 break;

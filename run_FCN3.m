@@ -77,7 +77,7 @@ function run_FCN
         img(:,:,2) = img(:,:,2)-116.66876762; 
         img(:,:,3) = img(:,:,3)-122.67891434;
         
-        output = caffe('forward', {single(img);single(zeros(input_size))}, 'data_input_0_split', 'conv9-1', 'conv9-1');
+        output = caffe('forward', {single(img);single(zeros(input_size))}, 'data_input_0_split', 'conv-final', 'conv-final');
         output = output{1};
         output = squeeze(output);
         cos_win = hann(input_size(1))*hann(input_size(2))';
@@ -99,7 +99,7 @@ function run_FCN
         start_layer = 'fc6';
         for i = 1:iterNum
             lr = 1e-12;
-            output = caffe('forward', {single(img);single(label)}, 'conv9-1', 'loss', 'loss');
+            output = caffe('forward', {single(img);single(label)}, 'conv-final', 'loss', 'loss');
             output = output{1};
             caffe('backward', {single(output)}, 'loss', start_layer);
             caffe('update', lr);
